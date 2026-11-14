@@ -1,0 +1,72 @@
+# com.pulse.Launcher.yml — build Flatpak di Pulse
+#
+# Build locale:
+#   flatpak-builder --force-clean build-dir flatpak/com.pulse.Launcher.yml
+# Installa e prova:
+#   flatpak-builder --user --install --force-clean build-dir flatpak/com.pulse.Launcher.yml
+#   flatpak run com.pulse.Launcher
+#
+# Per Flathub/submit serve una build completamente OFFLINE: vedi README sezione
+# "Flatpak" per generare cargo-sources.json con flatpak-cargo-generator.py.
+# Qui usiamo --share=network SOLO per scaricare le crate (Cargo.lock è bloccato
+# con --locked, quindi la build è comunque deterministica).
+
+app-id: com.pulse.Launcher
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+
+command: pulse
+
+finish-args:
+  # Clipboard: via Wayland (anche su sessione Wayland con fallback X11 per app XWayland)
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  # GPU per l'accelerazione della webview
+  - --device=dri
+  # Lettura (e scrittura, per frecency/cache) della home: è un launcher/file manager, ne ha bisogno
+  - --filesystem=home
+  # Bus di sessione: scorciatoie globali via xdg-desktop-portal + clipboard legacy + tray
+  - --socket=session-bus
+  # Portali: GlobalShortcuts (Wayland), notifiche, apertura URI
+  - --talk-name=org.freedesktop.portal.Desktop
+  - --talk-name=org.freedesktop.portal.GlobalShortcuts
+  - --talk-name=org.freedesktop.Notifications
+  # flatpak-spawn --host: lanciare le applicazioni installate SULL'HOST
+  # (obbligatorio per un launcher dentro il sandbox)
+  - --talk-name=org.freedesktop.Flatpak
+  # Avvia via sessione, nessuna sessione D-Bus di sistema
+  - --env=PULSE_FLATPAK=1
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/man
+
+modules:
+  - name: pulse
+    buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin
+      build-args:
+        - --share=network   # solo per fetch crate; rimuoverlo in build offline Flathub
+      env:
+        CARGO_PROFILE_RELEASE_LTO: 'true'
+        CARGO_PROFILE_RELEASE_CODEGEN_UNITS: '1'
+    build-commands:
+      - cargo --offline build --release --locked --manifest-path src-tauri/Cargo.toml || cargo build --release --locked --manifest-path src-tauri/Cargo.toml
+      - install -Dm755 src-tauri/target/release/pulse /app/bin/pulse
+      - install -Dm644 flatpak/com.pulse.Launcher.desktop /app/share/applications/com.pulse.Launcher.desktop
+      - install -Dm644 flatpak/com.pulse.Launcher.metainfo.xml /app/share/metainfo/com.pulse.Launcher.metainfo.xml
+      - install -Dm644 src-tauri/icons/icon.png /app/share/icons/hicolor/512x512/apps/com.pulse.Launcher.png
+      - install -Dm644 src-tauri/icons/icon.png /app/share/icons/hicolor/256x256/apps/com.pulse.Launcher.png
+    sources:
+      - type: dir
+        path: ..
+        skip:
+          - target
+          - .git
+          - build-dir

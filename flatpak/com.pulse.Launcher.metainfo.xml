@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.pulse.Launcher</id>
+  <name>Pulse</name>
+  <summary>Launcher globale istantaneo e clipboard manager locale</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer_name>Pulse contributors</developer_name>
+  <description>
+    <p>
+      Pulse è un launcher globale per Linux e Windows: ricerca fuzzy istantanea
+      di applicazioni, file e cartelle con algoritmo frecency (frequenza + recenza),
+      cronologia multimodale degli appunti (testo, link, emoji, immagini) e una
+      interfaccia Spotlight/Raycast 100% navigabile da tastiera.
+    </p>
+    <p>
+      Tutto funziona in locale: nessuna telemetria, nessuna trasmissione di rete.
+      L'indice dei file vive in memoria, la frecency e gli appunti in SQLite (WAL)
+      nella directory dati dell'utente.
+    </p>
+    <ul>
+      <li>Alt+Space apre la palette ovunque</li>
+      <li>Ricerca fuzzy con ranking frecency</li>
+      <li>Clipboard manager con anteprime immagini e filtro segreti</li>
+      <li>Modalità privacy per sospendere l'acquisizione</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">com.pulse.Launcher.desktop</launchable>
+  <url type="homepage">https://github.com/TUO-USER/pulse</url>
+  <url type="bugtracker">https://github.com/TUO-USER/pulse/issues</url>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="0.1.0" date="2026-11-14">
+      <description>
+        <p>Primo rilascio pubblico: ricerca globale, clipboard manager, tray, hotkey globale.</p>
+      </description>
+    </release>
+  </releases>
+</component>

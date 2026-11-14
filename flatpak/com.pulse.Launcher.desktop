@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Pulse
+GenericName=Launcher globale
+Comment=Launcher globale istantaneo e clipboard manager locale
+Exec=pulse
+Icon=com.pulse.Launcher
+Terminal=false
+Categories=Utility;System;
+Keywords=launcher;search;clipboard;appunti;spotlight;raycast;
+StartupNotify=false
+X-Flatpak-RenamedFrom=pulse.desktop

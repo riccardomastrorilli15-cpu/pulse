@@ -1,0 +1,24 @@
+# Rust / Tauri
+/target
+src-tauri/target
+**/*.rs.bk
+cargo-sources.json
+
+# Flatpak build dirs
+.flatpak-builder/
+build-dir/
+.flatpak/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local env
+.env
+.env.local
+
+# Unselected image variants
+Unselected files/

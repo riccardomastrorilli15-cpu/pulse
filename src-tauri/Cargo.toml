@@ -1,0 +1,48 @@
+[package]
+name = "pulse"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.77"
+description = "Pulse — launcher globale istantaneo e clipboard manager multipiattaforma (Windows/Linux)"
+license = "MIT"
+default-run = "pulse"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.32", features = ["bundled"] }
+nucleo-matcher = "0.3"
+ignore = "0.4"
+notify = "6"
+rayon = "1"
+arboard = "3"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "webp", "gif", "bmp"] }
+base64 = "0.22"
+dirs = "5"
+parking_lot = "0.12"
+sha2 = "0.10"
+enigo = { version = "0.3", default-features = false, features = ["x11rb", "wayland", "libei"] }
+
+[profile.dev]
+opt-level = 1
+incremental = true
+
+# Profilo release ottimizzato per dimensione/velocità del binario
+# (fat LTO richiede ~4+ GB di RAM in fase di link; su macchine piccole usare:
+#  CARGO_PROFILE_RELEASE_LTO=thin CARGO_PROFILE_RELEASE_CODEGEN_UNITS=4 cargo build --release)
+[profile.release]
+opt-level = 3
+lto = true          # Link-Time Optimization su tutto il crate-graph
+codegen-units = 1   # Massimizza le ottimizzazioni cross-modulo
+strip = true        # Rimuove simboli di debug dal binario finale
+panic = "unwind"
+debug = false
+overflow-checks = false

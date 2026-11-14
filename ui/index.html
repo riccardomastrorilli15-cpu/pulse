@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Pulse — launcher globale</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%234f46e5'/%3E%3Cpath d='M12 52h22l6-18 10 34 8-24 5 8h25' stroke='%23ffffff' stroke-width='7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Barra di ricerca + segmenti modalità -->
+  <header class="searchbar" data-tauri-drag-region>
+    <span class="search-glyph" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+    </span>
+    <input id="search" type="text" autocomplete="off" autocapitalize="off" autocorrect="off"
+           spellcheck="false" autofocus
+           placeholder="Cerca app, file, cartelle… (scrivi “cb ” per gli appunti)"
+           aria-label="Cerca" aria-controls="results" aria-activedescendant="">
+    <nav class="modes" id="modes" role="tablist" aria-label="Modalità di ricerca">
+      <button class="mode active" role="tab" aria-selected="true"  data-mode="all">Tutto</button>
+      <button class="mode" role="tab" aria-selected="false" data-mode="apps">App</button>
+      <button class="mode" role="tab" aria-selected="false" data-mode="files">File</button>
+      <button class="mode" role="tab" aria-selected="false" data-mode="clipboard">Appunti</button>
+    </nav>
+  </header>
+
+  <!-- Area centrale: risultati + anteprima opzionale -->
+  <div class="body">
+    <main class="results" id="results" role="listbox" aria-label="Risultati" tabindex="0"></main>
+
+    <aside class="preview" id="preview" aria-label="Anteprima" hidden>
+      <div class="preview-head">
+        <span id="preview-title">Anteprima</span>
+        <button id="preview-close" class="mini-btn" title="Chiudi anteprima (Ctrl+P)" aria-label="Chiudi anteprima">✕</button>
+      </div>
+      <div class="preview-body" id="preview-body"></div>
+      <div class="preview-foot" id="preview-foot"></div>
+    </aside>
+  </div>
+
+  <!-- Footer: scorciatoie + azioni contestuali -->
+  <footer class="footer">
+    <div class="hints" aria-hidden="true">
+      <span><kbd>↑</kbd><kbd>↓</kbd> naviga</span>
+      <span><kbd>↵</kbd> apri</span>
+      <span><kbd>Ctrl</kbd><kbd>↵</kbd> cartella</span>
+      <span><kbd>Ctrl</kbd><kbd>C</kbd> copia</span>
+      <span><kbd>Tab</kbd> modalità</span>
+      <span><kbd>Ctrl</kbd><kbd>P</kbd> anteprima</span>
+      <span><kbd>Esc</kbd> chiudi</span>
+    </div>
+    <div class="status">
+      <button id="clear-clip" class="ghost-btn" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        Cancella cronologia
+      </button>
+      <span id="status" class="status-text">Pulse</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
