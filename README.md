@@ -5,7 +5,7 @@
 **Launcher globale istantaneo + clipboard manager per Windows e Linux.**
 Ricerca fuzzy con frecency, cronologia appunti multimodale, finestra Spotlight/Raycast, **tutto in locale**, zero telemetria.
 
-[![CI](https://github.com/TUO-USER/pulse/actions/workflows/ci.yml/badge.svg)](https://github.com/TUO-USER/pulse/actions)
+[![CI](https://github.com/riccardomastrorilli15-cpu/pulse/actions/workflows/ci.yml/badge.svg)](https://github.com/riccardomastrorilli15-cpu/pulse/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20Linux-blue.svg)](#build)
 [![Built with Tauri v2](https://img.shields.io/badge/Tauri-v2-24c8db.svg)](https://tauri.app)
@@ -65,7 +65,7 @@ Ricerca fuzzy con frecency, cronologia appunti multimodale, finestra Spotlight/R
 ### Sviluppo
 
 ```bash
-git clone https://github.com/TUO-USER/pulse.git
+git clone https://github.com/riccardomastrorilli15-cpu/pulse.git
 cd pulse
 
 # con tauri-cli
@@ -272,7 +272,7 @@ gh repo create pulse --public --source=. --remote=origin --push
 
    ```bash
    cd pulse
-   git remote add origin https://github.com/TUO-USER/pulse.git   # oppure git@github.com:TUO-USER/pulse.git
+   git remote add origin https://github.com/riccardomastrorilli15-cpu/pulse.git   # oppure git@github.com:riccardomastrorilli15-cpu/pulse.git
    git branch -M main
    git push -u origin main
    ```
@@ -282,18 +282,17 @@ gh repo create pulse --public --source=. --remote=origin --push
 
 **Dopo il push — verifica in 30 secondi**
 
-- Apri `https://github.com/TUO-USER/pulse` → ci devono essere tutti i file
+- Apri `https://github.com/riccardomastrorilli15-cpu/pulse` → ci devono essere tutti i file
 - Tab **Actions** → il run *CI* parte da solo (fmt + clippy + test): verde ✅ = tutto ok
 - Settings → *General* → aggiungi descrizione e topics: `launcher`, `clipboard-manager`, `rust`, `tauri`, `spotlight`
 
-**Nota sui segnaposto `TUO-USER`**
+**Nota sui link nel repo**
 
-I link del README e i metadati puntano a `TUO-USER/pulse`. Sostituisci con il tuo:
+I link del README, gli badge CI e i metadati Flatpak puntano a `riccardomastrorilli15-cpu/pulse`. Se in futuro rinomini il repo o usi un'organizzazione diversa, aggiornali tutti con:
 
 ```bash
-grep -rl TUO-USER --exclude-dir=.git --exclude-dir=target . | xargs sed -i 's/TUO-USER/il-tuo-username-github/g'
-git add -A && git commit -m "docs: imposta username GitHub nei link"
-git push
+grep -rl riccardomastrorilli15-cpu --exclude-dir=.git --exclude-dir=target . | xargs sed -i 's/riccardomastrorilli15-cpu/nuovo-nome/g'
+git add -A && git commit -m "docs: aggiorna link del repo" && git push
 ```
 
 **Opzionale — release con installer**
@@ -310,7 +309,7 @@ Puoi ospitare gratis una pagina del progetto con **GitHub Pages**: repo → *Set
 
 **Problemi comuni**
 
-- `remote origin already exists` → `git remote set-url origin https://github.com/TUO-USER/pulse.git`
+- `remote origin already exists` → `git remote set-url origin https://github.com/riccardomastrorilli15-cpu/pulse.git`
 - "repository not empty" / `fetch first` → il repo su GitHub non era vuoto: cancellalo e ricrealo vuoto (consigliato) oppure `git pull origin main --allow-unrelated-histories`
 - `403 Permission denied` in push → auth fallita: Personal Access Token (HTTPS) oppure sistema la chiave SSH (`ssh -T git@github.com` per testare)
 - `fatal: not a git repository` → sei nella cartella sbagliata: la corretta contiene `src-tauri/`, `ui/` e `.gitignore`

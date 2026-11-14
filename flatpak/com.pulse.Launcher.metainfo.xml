@@ -26,8 +26,8 @@
     </ul>
   </description>
   <launchable type="desktop-id">com.pulse.Launcher.desktop</launchable>
-  <url type="homepage">https://github.com/TUO-USER/pulse</url>
-  <url type="bugtracker">https://github.com/TUO-USER/pulse/issues</url>
+  <url type="homepage">https://github.com/riccardomastrorilli15-cpu/pulse</url>
+  <url type="bugtracker">https://github.com/riccardomastrorilli15-cpu/pulse/issues</url>
   <content_rating type="oars-1.1"/>
   <releases>
     <release version="0.1.0" date="2026-11-14">

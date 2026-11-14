@@ -34,7 +34,7 @@ const DEMO_ITEMS = [
 ];
 const DEMO_CLIPBOARD = [
   { id: 1, kind: 'code', content: 'fn main() {\n    println!("ciao da Pulse");\n}', preview: 'fn main() { println!("ciao da Pulse"); }', image: null, created_at: nowSec() - 240, pinned: true, bytes: 46 },
-  { id: 2, kind: 'link', content: 'https://github.com/TUO-USER/pulse', preview: 'https://github.com/TUO-USER/pulse', image: null, created_at: nowSec() - 900, pinned: false, bytes: 38 },
+  { id: 2, kind: 'link', content: 'https://github.com/riccardomastrorilli15-cpu/pulse', preview: 'https://github.com/riccardomastrorilli15-cpu/pulse', image: null, created_at: nowSec() - 900, pinned: false, bytes: 38 },
   { id: 3, kind: 'emoji', content: '🔥🚀✨🎯⚡', preview: '🔥🚀✨🎯⚡', image: null, created_at: nowSec() - 3600, pinned: false, bytes: 20 },
   { id: 4, kind: 'text', content: 'Via Mannelli 10, 50136 Firenze (FI) — aggiusta per la spedizione di giovedì mattina', preview: 'Via Mannelli 10, 50136 Firenze (FI) — aggiusta per la spedizione di giovedì mattina', image: null, created_at: nowSec() - 7200, pinned: false, bytes: 84 },
   { id: 5, kind: 'text', content: 'SELECT * FROM clipboard WHERE kind = \'text\' ORDER BY created_at DESC LIMIT 50;', preview: "SELECT * FROM clipboard WHERE kind = 'text' ORDER BY created_at DESC LIMIT 50;", image: null, created_at: nowSec() - 86400, pinned: false, bytes: 74 },

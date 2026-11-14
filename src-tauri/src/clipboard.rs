@@ -263,7 +263,7 @@ mod tests {
         assert!(is_sensitive("ghp_1234567890abcdefghij1234567890abcdef"));
         assert!(is_sensitive("password=hunter2"));
         assert!(is_sensitive("https://user:pass@host.com/x?password=secret"));
-        assert!(!is_sensitive("https://github.com/TUO-USER/pulse"));
+        assert!(!is_sensitive("https://github.com/riccardomastrorilli15-cpu/pulse"));
         assert!(!is_sensitive("Ricetta della carbonara"));
     }
 }
